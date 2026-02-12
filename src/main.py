@@ -6,7 +6,8 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QHBoxLayout, QPushButton, QLabel, QScrollArea, QFrame)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-
+from PyQt6.QtGui import QIcon
+import os, sys
 # Import UI components
 from ui.pph21_tab import PPh21Widget
 
@@ -179,6 +180,14 @@ class MainWindow(QMainWindow):
         placeholder.setStyleSheet("font-size: 24px; color: #5b6b8c;")
         self.scroll_area.setWidget(placeholder)
 
+    def resource_path(relative_path):
+        try:
+            base_path = sys._MEIPASS
+        except:
+            base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+        return os.path.join(base_path, relative_path)
+
+
 
 def main():
     """Main function untuk menjalankan aplikasi"""
@@ -189,6 +198,8 @@ def main():
     
     # Create and show main window
     window = MainWindow()
+    app.setWindowIcon(
+        QIcon(MainWindow.resource_path("assets/icons/app_icon.ico")))
     window.show()
     
     sys.exit(app.exec())
