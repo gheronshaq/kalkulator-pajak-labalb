@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
         
     def init_ui(self):
         """Initialize UI components"""
-        self.setWindowTitle("Kalkulator Pajak Indonesia")
+        self.setWindowTitle("Kalkulator Pajak Laboratorium Akuntasi Lanjut B")
         self.setGeometry(100, 100, 1400, 800)
         
         # Central widget
@@ -81,7 +81,7 @@ class MainWindow(QMainWindow):
         sidebar.setFixedWidth(280)
         sidebar.setStyleSheet("""
             QFrame {
-                background-color: #1e293b;
+                background-color: #691B8D;
             }
         """)
         
@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
         layout.setContentsMargins(15, 20, 15, 20)
         
         # Header/Logo
-        header = QLabel("📊 KALKULATOR\nPAJAK")
+        header = QLabel("KALKULATOR PAJAK\nLABALB")
         header.setStyleSheet("""
             color: white;
             font-size: 18px;
