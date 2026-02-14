@@ -180,10 +180,14 @@ class MainWindow(QMainWindow):
         placeholder.setStyleSheet("font-size: 24px; color: #5b6b8c;")
         self.scroll_area.setWidget(placeholder)
 
+    @staticmethod
     def resource_path(relative_path):
+        """Get absolute path to resource, works for dev and for PyInstaller"""
         try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
             base_path = sys._MEIPASS
-        except:
+        except Exception:
+            # Running in normal Python environment
             base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
         return os.path.join(base_path, relative_path)
 
@@ -198,8 +202,9 @@ def main():
     
     # Create and show main window
     window = MainWindow()
-    app.setWindowIcon(
-        QIcon(MainWindow.resource_path("assets/icons/app_icon.ico")))
+    # Set window icon (for taskbar and window title bar)
+    icon_path = MainWindow.resource_path("resources/icons/app_icon.ico")
+    window.setWindowIcon(QIcon(icon_path))
     window.show()
     
     sys.exit(app.exec())
